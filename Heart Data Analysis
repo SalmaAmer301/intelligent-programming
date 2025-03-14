@@ -1,0 +1,33 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset (assuming heart.csv is in the same directory as this notebook)
+df = pd.read_csv("heart.csv")
+
+# Display basic information
+print("Dataset Overview:\n")
+print(df.info())
+print("\nFirst 5 rows:\n")
+print(df.head())
+
+# Check for missing values
+print("\nMissing Values:\n")
+print(df.isnull().sum())
+
+# Summary statistics
+print("\nSummary Statistics:\n")
+print(df.describe())
+
+# Visualize the correlation heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Feature Correlation Heatmap")
+plt.show()
+
+# Plot distribution of target variable (assuming 'target' is the label column)
+sns.countplot(x=df['target'], palette='viridis')
+plt.title("Target Variable Distribution")
+plt.xlabel("Heart Disease (1 = Yes, 0 = No)")
+plt.ylabel("Count")
+plt.show()
